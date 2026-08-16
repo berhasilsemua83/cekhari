@@ -73,30 +73,35 @@ export default function App() {
     }
   };
 
-  const handleCalculate = () => {
-    if (!day || !month || !year) return;
+const handleCalculate = () => {
+  if (!day || !month || !year) return;
 
-    // Pad day with 0 if single digit
-    const paddedDay = day.padStart(2, '0');
-    // Month is 0-indexed in our logic for calculation if needed, but here we construct YYYY-MM-DD
-    // Ensure month is padded (01, 02, etc)
-    const monthIndex = parseInt(month) + 1; // month is stored as 0-11 string index
-    const paddedMonth = monthIndex.toString().padStart(2, '0');
-    
-    const dateString = `${year}-${paddedMonth}-${paddedDay}`;
-    
-    // Basic validation
-    const dateObj = new Date(dateString);
-    const isValidDate = dateObj instanceof Date && !isNaN(dateObj.getTime()) && dateObj.getDate() === parseInt(day);
+  const numDay = parseInt(day, 10);
+  const numMonth = parseInt(month, 10); // month sudah 0-11
+  const numYear = parseInt(year, 10);
 
-    if (isValidDate) {
-        const calcResult = calculateBirthDay(dateString);
-        setResult(calcResult);
-        setCopied(false);
-    } else {
-        alert("Tanggal tidak valid. Silakan periksa kembali.");
-    }
-  };
+  // Menggunakan konstruktor ini jauh lebih aman dari masalah Timezone
+  const dateObj = new Date(numYear, numMonth, numDay);
+  
+  // Validasi ketat: pastikan tanggal, bulan, dan tahun tidak melompat (misal: 31 Februari)
+  const isValidDate = 
+    dateObj.getFullYear() === numYear && 
+    dateObj.getMonth() === numMonth && 
+    dateObj.getDate() === numDay;
+
+  if (isValidDate) {
+      // Format kembali jadi YYYY-MM-DD jika wetonCalculator membutuhkan string
+      const paddedDay = numDay.toString().padStart(2, '0');
+      const paddedMonth = (numMonth + 1).toString().padStart(2, '0');
+      const dateString = `${numYear}-${paddedMonth}-${paddedDay}`;
+
+      const calcResult = calculateBirthDay(dateString);
+      setResult(calcResult);
+      setCopied(false);
+  } else {
+      alert("Tanggal tidak valid. Silakan periksa kembali.");
+  }
+};
 
   const handleCopy = () => {
     if (!result || !result.data) return;
