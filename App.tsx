@@ -244,7 +244,7 @@ ${result.data.saran}
               <div className="space-y-4 relative z-10">
                 <div>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Kombinasi Hari & Pasaran</p>
-                  <p className="text-4xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white bg-clip-text">
+                  <p className="text-3xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white bg-clip-text">
                     {result.wetonLengkap}
                   </p>
                   <div className="mt-2 inline-flex items-center px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 text-sm font-semibold">
@@ -279,15 +279,15 @@ ${result.data.saran}
 
                  <div className="grid grid-cols-3 gap-2 text-center">
                     <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
-                      <span className="block text-2xl font-bold">{result.age.years}</span>
+                      <span className="block text-xl md:text-2xl font-bold">{result.age.years}</span>
                       <span className="text-xs text-primary-100 uppercase tracking-wider">Tahun</span>
                     </div>
                     <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
-                      <span className="block text-2xl font-bold">{result.age.months}</span>
+                      <span className="block text-xl md:text-2xl font-bold">{result.age.months}</span>
                       <span className="text-xs text-primary-100 uppercase tracking-wider">Bulan</span>
                     </div>
                     <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
-                      <span className="block text-2xl font-bold">{result.age.days}</span>
+                      <span className="block text-xl md:text-2xl font-bold">{result.age.days}</span>
                       <span className="text-xs text-primary-100 uppercase tracking-wider">Hari</span>
                     </div>
                  </div>
