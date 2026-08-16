@@ -1,8 +1,8 @@
 export interface WetonData {
   watak: string;
   saran?: string;
-  lakuning: string; // Karakter alam (opsional tapi menarik)
-  karier: string;   // Rekomendasi pekerjaan
+  lakuning?: string; // Karakter alam (opsional tapi menarik)
+  karier?: string;   // Rekomendasi pekerjaan
 }
 
 export interface AgeDetail {
