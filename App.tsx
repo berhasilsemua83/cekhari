@@ -347,13 +347,19 @@ ${result.data.saran}
                     </p>
                   </div>
 
-                  {/* Section Saran */}
+                  {/* Section Saran (Diperbaiki Warna & Desainnya) */}
                   {result.data.saran && (
-                    <div className="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-5 border border-primary-100 dark:border-primary-800">
-                      <h4 className="font-heading text-md font-semibold text-primary-700 dark:text-primary-300 mb-2 flex items-center gap-2">
-                        💡 Saran & Nasihat
+                    <div className="relative bg-primary-50 dark:bg-dark-bg rounded-2xl p-5 md:p-6 border border-primary-100 dark:border-gray-700/60 overflow-hidden shadow-inner">
+                      {/* Watermark Quote Icon di Background */}
+                      <span className="absolute -top-4 -right-2 text-8xl font-serif text-primary-500 opacity-10 dark:opacity-20 pointer-events-none">
+                        "
+                      </span>
+                      
+                      <h4 className="relative z-10 font-heading text-md font-semibold text-primary-700 dark:text-primary-400 mb-3 flex items-center gap-2">
+                        💡 Pesan Untukmu
                       </h4>
-                      <p className="text-primary-800 dark:text-primary-200 text-sm leading-relaxed italic">
+                      
+                      <p className="relative z-10 text-gray-800 dark:text-gray-200 text-sm md:text-base leading-relaxed italic font-medium">
                         "{result.data.saran}"
                       </p>
                     </div>
