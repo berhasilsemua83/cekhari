@@ -3,34 +3,40 @@ import { calculateBirthDay } from './utils/wetonCalculator';
 import { BirthResult } from './types';
 import { openAffiliateLink } from './affiliateLinks'; // Sesuaikan path jika file ini ada di dalam folder /utils
 
-// --- Icons ---
-const MoonIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+// --- Icons (Diperbarui agar bisa ganti ukuran className) ---
+const MoonIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
   </svg>
 );
 
-const SunIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+const SunIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.288-4.161l-1.591 1.591M3 12H5.25m.386-6.364L7.227 7.227M12 10.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3z" />
   </svg>
 );
 
-const FingerPrintIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+const FingerPrintIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565m4.382-2.672a9.712 9.712 0 01.309 2.227 15.365 15.365 0 01-.65 4.885M8.25 18a14.25 14.25 0 005.5-2.25" />
   </svg>
 );
 
-const SparklesIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+const SparklesIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
   </svg>
 );
 
-const CopyIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+const CopyIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+  </svg>
+);
+
+const DownloadIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
   </svg>
 );
 
@@ -102,10 +108,10 @@ export default function App() {
         setCopied(false);
         setShowFullResult(false); // Kunci kembali saat klik Cek
         
-        // Auto-Scroll otomatis ke hasil
+        // Auto-Scroll otomatis ke hasil dengan delay yang cukup
         setTimeout(() => {
           resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 150); // Delay sedikit agar DOM selesai ter-render
+        }, 200);
 
     } else {
         alert("Tanggal tidak valid. Silakan periksa kembali.");
@@ -137,10 +143,16 @@ ${result.data.saran}
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleDownloadPDF = () => {
+    window.print(); // Memanggil fungsi bawaan browser untuk Print / Save as PDF
+  };
+
   return (
-    <div className="min-h-screen flex flex-col font-sans selection:bg-primary-500 selection:text-white">
-      {/* Header */}
-      <header className="w-full py-2.5 md:py-6 px-4 md:px-8 flex justify-between items-center bg-white/80 dark:bg-dark-bg/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
+    // Tambahan class print:bg-white print:text-black agar PDF hasilnya bersih
+    <div className="min-h-screen flex flex-col font-sans selection:bg-primary-500 selection:text-white print:bg-white print:text-black">
+      
+      {/* Header (Akan sembunyi saat di Print berkat class print:hidden) */}
+      <header className="print:hidden w-full py-2.5 md:py-6 px-4 md:px-8 flex justify-between items-center bg-white/80 dark:bg-dark-bg/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
         <div className="flex items-center gap-2 md:gap-3">
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white shadow-lg shadow-primary-500/30">
             <FingerPrintIcon />
@@ -159,10 +171,10 @@ ${result.data.saran}
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-2 md:py-12 max-w-4xl">
+      <main className="flex-grow container mx-auto px-4 py-2 md:py-12 max-w-4xl print:py-0 print:px-0">
         
-        {/* Hero / Input Section */}
-        <section className="text-center mb-4 md:mb-12 space-y-2 md:space-y-6 animate-fade-in-up">
+        {/* Hero / Input Section (Sembunyi saat Print) */}
+        <section className="print:hidden text-center mb-4 md:mb-12 space-y-2 md:space-y-6 animate-fade-in-up">
           <div className="space-y-1.5 md:space-y-3 px-2">
             <span className="inline-block py-0.5 md:py-1 px-2.5 md:px-3 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-[10px] md:text-xs font-bold tracking-wider uppercase">
               Kenali Jati Dirimu 🔮
@@ -175,7 +187,7 @@ ${result.data.saran}
             </p>
           </div>
 
-          {/* New Input Form Section */}
+          {/* Input Form Section */}
           <div className="relative group max-w-lg mx-auto mt-3 md:mt-8">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-400 to-primary-600 rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative bg-white dark:bg-dark-card rounded-2xl p-3 md:p-6 shadow-2xl ring-1 ring-gray-900/5">
@@ -226,7 +238,7 @@ ${result.data.saran}
                 onClick={handleCalculate}
                 className="w-full bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-bold py-2.5 md:py-3.5 rounded-lg md:rounded-xl text-sm md:text-base shadow-lg shadow-primary-500/25 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
               >
-                <SparklesIcon />
+                <SparklesIcon className="w-5 h-5" />
                 Cek
               </button>
 
@@ -234,45 +246,46 @@ ${result.data.saran}
           </div>
         </section>
 
-        {/* --- AREA RESULTS (Scroll akan meluncur ke sini) --- */}
-        {/* Tambahkan ref={resultRef} untuk target auto-scroll dan scroll-margin-top agar tidak tertutup header */}
-        <div ref={resultRef} className="scroll-mt-24">
+        {/* --- AREA RESULTS --- */}
+        {/* Margin top dinaikkan (scroll-mt-32) agar saat auto-scroll form & header tidak menutupi tombol */}
+        <div ref={resultRef} className="scroll-mt-32">
           {result && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in-up delay-75 mt-8 md:mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 animate-fade-in-up delay-75 mt-6 md:mt-12 print:mt-0 print:gap-4">
               
-              {/* Card 1: Main Birth Summary (SELALU TAMPIL) */}
-              <div className={`bg-white dark:bg-dark-card rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden group hover:shadow-2xl transition-all duration-500 ${showFullResult ? "md:col-span-1" : "md:col-span-2 max-w-lg mx-auto w-full"}`}>
-                <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/10 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110 duration-500"></div>
+              {/* Card 1: Main Birth Summary (DIPERKECIL KHUSUS HP) */}
+              <div className={`bg-white dark:bg-dark-card rounded-2xl md:rounded-3xl p-4 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden group hover:shadow-2xl transition-all duration-500 ${showFullResult ? "md:col-span-1 print:col-span-2" : "md:col-span-2 max-w-lg mx-auto w-full"}`}>
+                <div className="absolute top-0 right-0 w-32 h-32 md:w-40 md:h-40 bg-primary-500/10 rounded-bl-full -mr-8 -mt-8 md:-mr-10 md:-mt-10 transition-transform group-hover:scale-110 duration-500"></div>
                 
-                <div className="flex items-center gap-2 mb-6">
-                  <span className="p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-primary-600 dark:text-primary-400">
-                    <FingerPrintIcon />
+                <div className="flex items-center gap-2 mb-4 md:mb-6">
+                  <span className="p-1.5 md:p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-primary-600 dark:text-primary-400">
+                    <FingerPrintIcon className="w-5 h-5 md:w-6 md:h-6" />
                   </span>
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                  <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 print:text-black">
                     Profil Kelahiran
                   </h3>
                 </div>
 
-                <div className="space-y-4 relative z-10">
+                <div className="space-y-3 md:space-y-4 relative z-10">
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Kombinasi Hari & Pasaran</p>
-                    <p className="text-3xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white bg-clip-text">
+                    <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mb-0.5 md:mb-1 print:text-gray-600">Kombinasi Hari & Pasaran</p>
+                    {/* Teks nama weton dikecilkan untuk HP agar hemat ruang vertikal */}
+                    <p className="text-2xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white bg-clip-text print:text-black">
                       {result.wetonLengkap}
                     </p>
-                    <div className="mt-2 inline-flex items-center px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 text-sm font-semibold">
+                    <div className="mt-1 md:mt-2 inline-flex items-center px-2.5 md:px-3 py-0.5 md:py-1 rounded-full bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 text-xs md:text-sm font-semibold print:bg-gray-100 print:text-black">
                       Neptu: {result.neptu}
                     </div>
                   </div>
                   <div>
-                     <p className="text-lg font-medium text-primary-600 dark:text-primary-400">
+                     <p className="text-base md:text-lg font-medium text-primary-600 dark:text-primary-400 print:text-black">
                       {result.fullDate}
                     </p>
                   </div>
-                  <div className="flex gap-3 flex-wrap pt-2">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-semibold text-sm border border-gray-200 dark:border-gray-700">
-                      <SparklesIcon /> {result.zodiac}
+                  <div className="flex gap-2 md:gap-3 flex-wrap pt-1 md:pt-2">
+                    <span className="inline-flex items-center gap-1 md:gap-2 px-3 md:px-4 py-1 md:py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-semibold text-xs md:text-sm border border-gray-200 dark:border-gray-700 print:border-black print:bg-white print:text-black">
+                      <SparklesIcon className="w-3.5 h-3.5 md:w-4 md:h-4" /> {result.zodiac}
                     </span>
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 font-semibold text-sm border border-primary-100 dark:border-primary-800">
+                    <span className="inline-flex items-center gap-1 md:gap-2 px-3 md:px-4 py-1 md:py-2 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 font-semibold text-xs md:text-sm border border-primary-100 dark:border-primary-800 print:border-black print:bg-white print:text-black">
                       {result.dayName}
                     </span>
                   </div>
@@ -281,26 +294,26 @@ ${result.data.saran}
 
               {/* AREA TOMBOL GEMBOK PENASARAN (Tampil saat showFullResult = false) */}
               {!showFullResult && (
-                <div className="md:col-span-2 flex flex-col items-center justify-center space-y-5 py-6 md:py-8 animate-fade-in-up delay-150 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-dark-card dark:to-orange-900/10 rounded-3xl border border-orange-100 dark:border-orange-900/30 p-6 md:p-8 text-center shadow-sm">
+                <div className="print:hidden md:col-span-2 flex flex-col items-center justify-center space-y-3 md:space-y-4 py-4 md:py-8 animate-fade-in-up delay-150 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-dark-card dark:to-orange-900/10 rounded-2xl md:rounded-3xl border border-orange-100 dark:border-orange-900/30 p-5 md:p-8 text-center shadow-sm">
                   
-                  <div className="space-y-2 mb-2">
-                      <h4 className="text-xl md:text-2xl font-heading font-bold text-gray-900 dark:text-white">
+                  <div className="space-y-1.5 md:space-y-2 mb-1">
+                      <h4 className="text-lg md:text-2xl font-heading font-bold text-gray-900 dark:text-white leading-tight">
                           Wah, <span className="text-orange-500">{result.wetonLengkap}</span> punya potensi tersembunyi! ✨
                       </h4>
-                      <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 max-w-lg mx-auto leading-relaxed">
-                          Ternyata ada rahasia besar di balik tanggal lahirmu. Penasaran dengan watak asli, kecocokan karier, dan pesan khusus dari semesta untukmu?
+                      <p className="text-xs md:text-base text-gray-600 dark:text-gray-300 max-w-lg mx-auto leading-relaxed">
+                          Ada rahasia di balik tanggal lahirmu. Penasaran dengan watak asli, kecocokan karier, dan pesan khusus untukmu?
                       </p>
                   </div>
 
                   <button
                     onClick={handleUnlockResults}
-                    className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold py-3.5 px-8 md:px-12 rounded-full shadow-xl shadow-orange-500/30 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 text-lg border border-orange-400/50"
+                    className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold py-3 px-6 md:py-3.5 md:px-12 rounded-full shadow-lg shadow-orange-500/30 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 text-base md:text-lg border border-orange-400/50"
                   >
                     <span className="absolute inset-0 w-full h-full bg-white/20 group-hover:animate-[shimmer_1.5s_infinite] -skew-x-12 -ml-10"></span>
                     Buka Versi Lengkap 🔓
                   </button>
 
-                  <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 text-center max-w-md px-4 mt-2">
+                  <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400 text-center max-w-md px-2 mt-1">
                     <b>Info:</b> Untuk mendukung layanan ini, sistem akan membuka halaman sponsor di tab baru. Anda dapat menutup tab tersebut untuk kembali melihat hasil tes Anda.
                   </p>
                 </div>
@@ -310,27 +323,27 @@ ${result.data.saran}
               {showFullResult && (
                 <>
                   {/* Card 2: Age Calculator */}
-                  <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-3xl p-6 md:p-8 shadow-xl text-white relative overflow-hidden animate-fade-in-up">
+                  <div className="print:hidden bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-xl text-white relative overflow-hidden animate-fade-in-up">
                      <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-16 -mb-16"></div>
                      
                      <div className="relative z-10 h-full flex flex-col justify-between">
-                       <div>
-                          <h3 className="text-primary-100 font-medium mb-1">Usia Kamu Saat Ini</h3>
-                          <p className="text-3xl font-heading font-bold mb-6">Perjalanan Waktu</p>
+                       <div className="mb-4 md:mb-0">
+                          <h3 className="text-primary-100 font-medium mb-1 text-sm md:text-base">Usia Kamu Saat Ini</h3>
+                          <p className="text-2xl md:text-3xl font-heading font-bold md:mb-6">Perjalanan Waktu</p>
                        </div>
 
                        <div className="grid grid-cols-3 gap-2 text-center">
-                          <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
+                          <div className="bg-white/20 backdrop-blur-md rounded-xl md:rounded-2xl p-2.5 md:p-3">
                             <span className="block text-xl md:text-2xl font-bold">{result.age.years}</span>
-                            <span className="text-xs text-primary-100 uppercase tracking-wider">Tahun</span>
+                            <span className="text-[10px] md:text-xs text-primary-100 uppercase tracking-wider">Tahun</span>
                           </div>
-                          <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
+                          <div className="bg-white/20 backdrop-blur-md rounded-xl md:rounded-2xl p-2.5 md:p-3">
                             <span className="block text-xl md:text-2xl font-bold">{result.age.months}</span>
-                            <span className="text-xs text-primary-100 uppercase tracking-wider">Bulan</span>
+                            <span className="text-[10px] md:text-xs text-primary-100 uppercase tracking-wider">Bulan</span>
                           </div>
-                          <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
+                          <div className="bg-white/20 backdrop-blur-md rounded-xl md:rounded-2xl p-2.5 md:p-3">
                             <span className="block text-xl md:text-2xl font-bold">{result.age.days}</span>
-                            <span className="text-xs text-primary-100 uppercase tracking-wider">Hari</span>
+                            <span className="text-[10px] md:text-xs text-primary-100 uppercase tracking-wider">Hari</span>
                           </div>
                        </div>
                      </div>
@@ -338,64 +351,75 @@ ${result.data.saran}
 
                   {/* Card 3: Analysis */}
                   {result.data && (
-                    <div className="md:col-span-2 bg-white dark:bg-dark-card rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50 animate-fade-in-up delay-75">
-                      <div className="flex justify-between items-start mb-6">
+                    <div className="md:col-span-2 bg-white dark:bg-dark-card rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50 animate-fade-in-up delay-75 print:shadow-none print:border-none print:p-0">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                         <div className="flex items-center gap-2">
-                          <span className="p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-primary-600 dark:text-primary-400">
-                            <SparklesIcon />
+                          <span className="p-1.5 md:p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-primary-600 dark:text-primary-400 print:hidden">
+                            <SparklesIcon className="w-4 h-4 md:w-5 md:h-5" />
                           </span>
-                          <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                          <h3 className="text-xs md:text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 print:text-black">
                             Watak & Karakter (Ilmu Titen)
                           </h3>
                         </div>
-                        <button 
-                          onClick={handleCopy}
-                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                        >
-                          {copied ? (
-                            <span className="text-green-500">Tersalin!</span>
-                          ) : (
-                            <>
-                              <CopyIcon /> Salin Hasil
-                            </>
-                          )}
-                        </button>
+                        
+                        {/* Tombol Aksi (Hanya muncul di web, sembunyi di PDF) */}
+                        <div className="flex flex-wrap items-center gap-2 print:hidden">
+                          <button 
+                            onClick={handleCopy}
+                            className="flex items-center gap-1.5 px-3 py-2 md:py-1.5 rounded-lg text-xs font-semibold bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                          >
+                            {copied ? (
+                              <span className="text-green-500">Tersalin!</span>
+                            ) : (
+                              <>
+                                <CopyIcon className="w-4 h-4" /> Salin Teks
+                              </>
+                            )}
+                          </button>
+                          
+                          <button 
+                            onClick={handleDownloadPDF}
+                            className="flex items-center gap-1.5 px-3 py-2 md:py-1.5 rounded-lg text-xs font-semibold bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 hover:bg-primary-100 dark:hover:bg-primary-800/50 transition-colors"
+                          >
+                            <DownloadIcon className="w-4 h-4" /> Simpan PDF
+                          </button>
+                        </div>
                       </div>
 
-                      <div className="prose dark:prose-invert max-w-none">
-                        <h4 className="text-xl font-heading font-bold text-gray-900 dark:text-white mb-2">
+                      <div className="prose dark:prose-invert max-w-none print:text-black">
+                        <h4 className="text-lg md:text-xl font-heading font-bold text-gray-900 dark:text-white mb-2 print:text-black">
                           Kepribadian {result.wetonLengkap}
                         </h4>
                         
                         {/* Badge Lakuning */}
-                        <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium text-sm border border-indigo-100 dark:border-indigo-800">
+                        <div className="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 md:py-1.5 rounded-md md:rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium text-xs md:text-sm border border-indigo-100 dark:border-indigo-800 print:bg-white print:border-gray-400 print:text-black">
                           🌿 Metafora: {result.data.lakuning}
                         </div>
 
-                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-justify mb-6">
+                        <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed text-justify mb-6 print:text-black">
                           {result.data.watak}
                         </p>
 
                         {/* Section Karier */}
-                        <div className="mb-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-5 border border-gray-100 dark:border-gray-700/50">
-                          <h5 className="font-heading font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                        <div className="mb-6 bg-gray-50 dark:bg-gray-800/50 rounded-xl md:rounded-2xl p-4 md:p-5 border border-gray-100 dark:border-gray-700/50 print:bg-white print:border-gray-300">
+                          <h5 className="font-heading text-sm md:text-base font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2 print:text-black">
                             💼 Potensi Karier
                           </h5>
-                          <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                          <p className="text-xs md:text-sm text-gray-600 dark:text-gray-300 leading-relaxed print:text-black">
                             {result.data.karier}
                           </p>
                         </div>
 
                         {/* Section Saran */}
                         {result.data.saran && (
-                          <div className="relative bg-primary-50 dark:bg-dark-bg rounded-2xl p-5 md:p-6 border border-primary-100 dark:border-gray-700/60 overflow-hidden shadow-inner">
-                            <span className="absolute -top-4 -right-2 text-8xl font-serif text-primary-500 opacity-10 dark:opacity-20 pointer-events-none">
+                          <div className="relative bg-primary-50 dark:bg-dark-bg rounded-xl md:rounded-2xl p-4 md:p-6 border border-primary-100 dark:border-gray-700/60 overflow-hidden shadow-inner print:bg-white print:border-gray-300">
+                            <span className="absolute -top-2 -right-1 md:-top-4 md:-right-2 text-6xl md:text-8xl font-serif text-primary-500 opacity-10 dark:opacity-20 pointer-events-none print:hidden">
                               "
                             </span>
-                            <h4 className="relative z-10 font-heading text-md font-semibold text-primary-700 dark:text-primary-400 mb-3 flex items-center gap-2">
+                            <h4 className="relative z-10 font-heading text-sm md:text-md font-semibold text-primary-700 dark:text-primary-400 mb-2 md:mb-3 flex items-center gap-2 print:text-black">
                               💡 Pesan Untukmu
                             </h4>
-                            <p className="relative z-10 text-gray-800 dark:text-gray-200 text-sm md:text-base leading-relaxed italic font-medium">
+                            <p className="relative z-10 text-gray-800 dark:text-gray-200 text-xs md:text-base leading-relaxed italic font-medium print:text-black">
                               "{result.data.saran}"
                             </p>
                           </div>
@@ -403,13 +427,13 @@ ${result.data.saran}
                       </div>
                       
                       {/* Disclaimer Box */}
-                      <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-4 md:p-5 border border-amber-200 dark:border-amber-800/50">
-                        <div className="flex gap-3 items-start">
-                          <span className="text-amber-500 text-xl">⚠️</span>
+                      <div className="mt-6 md:mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-xl md:rounded-2xl p-4 border border-amber-200 dark:border-amber-800/50 print:bg-white print:border-gray-300">
+                        <div className="flex gap-2 md:gap-3 items-start">
+                          <span className="text-amber-500 text-lg md:text-xl print:hidden">⚠️</span>
                           <div>
-                            <h4 className="text-sm md:text-base font-bold text-amber-800 dark:text-amber-400 mb-1.5">Catatan Penting</h4>
-                            <p className="text-xs md:text-sm text-amber-700 dark:text-amber-300/80 leading-relaxed text-justify">
-                              Hasil analisa weton ini merupakan bagian dari pelestarian budaya Jawa dan <b><i>Ilmu Titen</i></b> (ilmu membaca pola alam leluhur), bukan sebuah ramalan mutlak. Jadikan hasilnya sebagai bahan introspeksi diri dan motivasi untuk menjadi pribadi yang lebih baik. Kepastian masa depan dan takdir sepenuhnya tetap berada di tangan Tuhan Yang Maha Esa.
+                            <h4 className="text-xs md:text-sm font-bold text-amber-800 dark:text-amber-400 mb-1 print:text-black">Catatan Penting</h4>
+                            <p className="text-[10px] md:text-xs text-amber-700 dark:text-amber-300/80 leading-relaxed text-justify print:text-gray-600">
+                              Hasil analisa weton ini merupakan bagian dari pelestarian budaya Jawa dan <b><i>Ilmu Titen</i></b> (ilmu membaca pola alam leluhur), bukan sebuah ramalan mutlak. Jadikan hasilnya sebagai bahan introspeksi diri.
                             </p>
                           </div>
                         </div>
