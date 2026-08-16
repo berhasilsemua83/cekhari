@@ -117,7 +117,7 @@ export const wetonDatabase: Record<string, WetonData> = {
   },
   "Rabu Kliwon": {
     lakuning: "Lakuning Srengenge (Matahari)",
-    watak: "Rabu Kliwon (Neptu 15) ibarat 'Matahari'. Punya wibawa kuat, menerangi sekitar, dan memegang prinsip dengan sangat teguh. Mereka memiliki daya pikat tinggi dan tahan banting di bawah tekanan. Namun, sifat layaknya matahari kadang membuat mereka terlalu "panas" (keras kepala, egois) dan sangat sulit menerima bantahan atau sudut pandang baru.",
+    watak: "Rabu Kliwon (Neptu 15) ibarat 'Matahari'. Punya wibawa kuat, menerangi sekitar, dan memegang prinsip dengan sangat teguh. Mereka memiliki daya pikat tinggi dan tahan banting di bawah tekanan. Namun, sifat layaknya matahari kadang membuat mereka terlalu 'panas' (keras kepala, egois) dan sangat sulit menerima bantahan atau sudut pandang baru.",
     karier: "Memiliki kapasitas sebagai Pemimpin sejati. Cocok menjadi Direktur, Komandan (Militer), Pengusaha, atau Kepala Daerah.",
     saran: "Turunkan sedikit egomu dan belajarlah mendengar pandangan orang lain agar kehangatanmu tidak 'membakar' orang di sekitarmu."
   },
