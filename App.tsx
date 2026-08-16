@@ -145,19 +145,20 @@ ${result.data.saran}
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-8 md:py-12 max-w-4xl">
+      <main className="flex-grow container mx-auto px-4 py-4 md:py-12 max-w-4xl">
         
         {/* Hero / Input Section */}
-        <section className="text-center mb-12 space-y-6 animate-fade-in-up">
-          <div className="space-y-3">
+        <section className="text-center mb-8 md:mb-12 space-y-4 md:space-y-6 animate-fade-in-up">
+          <div className="space-y-3 md:space-y-4 px-2">
             <span className="inline-block py-1 px-3 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-bold tracking-wider uppercase">
-              Tracking Hari Lahir
+              Kenali Jati Dirimu 🔮
             </span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white leading-tight">
-              Kapan Kamu <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">Lahir?</span>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white leading-tight">
+              Bongkar Rahasia di Balik <br className="block sm:hidden" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">Tanggal Lahirmu!</span>
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-lg leading-relaxed">
-              Cek Hari, Weton Jawa, Neptu, Zodiak, dan analisa karakter pribadimu dalam satu tempat.
+            <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-sm md:text-lg leading-relaxed">
+              Temukan watak tersembunyi, weton Jawa, neptu, hingga zodiakmu. Siap terkejut dengan hasilnya?
             </p>
           </div>
 
