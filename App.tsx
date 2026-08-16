@@ -126,18 +126,18 @@ ${result.data.saran}
   return (
     <div className="min-h-screen flex flex-col font-sans selection:bg-primary-500 selection:text-white">
       {/* Header */}
-      <header className="w-full py-3 md:py-6 px-4 md:px-8 flex justify-between items-center bg-white/80 dark:bg-dark-bg/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white shadow-lg shadow-primary-500/30">
+      <header className="w-full py-2.5 md:py-6 px-4 md:px-8 flex justify-between items-center bg-white/80 dark:bg-dark-bg/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white shadow-lg shadow-primary-500/30">
             <FingerPrintIcon />
           </div>
-          <h1 className="text-xl md:text-2xl font-heading font-bold tracking-tight text-gray-900 dark:text-white">
+          <h1 className="text-lg md:text-2xl font-heading font-bold tracking-tight text-gray-900 dark:text-white">
             BirthDay<span className="text-primary-500">Tracker</span>
           </h1>
         </div>
         <button 
           onClick={toggleTheme}
-          className="p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400"
+          className="p-1.5 md:p-2.5 rounded-lg md:rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 text-gray-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400"
           aria-label="Toggle Theme"
         >
           {isDarkMode ? <SunIcon /> : <MoonIcon />}
@@ -145,31 +145,33 @@ ${result.data.saran}
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-3 md:py-12 max-w-4xl">
+      <main className="flex-grow container mx-auto px-4 py-2 md:py-12 max-w-4xl">
         
         {/* Hero / Input Section */}
-        <section className="text-center mb-5 md:mb-12 space-y-3 md:space-y-6 animate-fade-in-up">
-          <div className="space-y-2 md:space-y-3 px-2">
-            <span className="inline-block py-1 px-3 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-bold tracking-wider uppercase">
+        <section className="text-center mb-4 md:mb-12 space-y-2 md:space-y-6 animate-fade-in-up">
+          <div className="space-y-1.5 md:space-y-3 px-2">
+            <span className="inline-block py-0.5 md:py-1 px-2.5 md:px-3 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-[10px] md:text-xs font-bold tracking-wider uppercase">
               Kenali Jati Dirimu 🔮
             </span>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white leading-tight">
+            <h2 className="text-2xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white leading-tight">
               Bongkar Rahasia di Balik <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">Tanggal Lahirmu!</span>
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-sm md:text-lg leading-relaxed">
-              Temukan watak tersembunyi, weton Jawa, neptu, hingga zodiakmu. Siapkah Anda dengan hasilnya?
+            <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-xs md:text-lg leading-snug md:leading-relaxed">
+              Temukan watak asli, weton, neptu, hingga zodiakmu. Siap terkejut dengan hasilnya?
             </p>
           </div>
 
           {/* New Input Form Section */}
           <div className="relative group max-w-lg mx-auto mt-3 md:mt-8">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-400 to-primary-600 rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-            <div className="relative bg-white dark:bg-dark-card rounded-2xl p-4 md:p-6 shadow-2xl ring-1 ring-gray-900/5">
+            {/* Padding kotak form dikurangi dari p-4 ke p-3 untuk HP */}
+            <div className="relative bg-white dark:bg-dark-card rounded-2xl p-3 md:p-6 shadow-2xl ring-1 ring-gray-900/5">
               
-              <div className="grid grid-cols-3 gap-3 md:gap-4 mb-4">
+              {/* Gap diperkecil, margin bawah diperkecil */}
+              <div className="grid grid-cols-3 gap-2 md:gap-4 mb-3 md:mb-4">
                 {/* Tanggal */}
                 <div className="flex flex-col text-left">
-                    <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1">Tgl</label>
+                    <label className="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 mb-0.5 md:mb-1 ml-1">Tgl</label>
                     <input
                       type="number"
                       placeholder="1-31"
@@ -177,17 +179,18 @@ ${result.data.saran}
                       max="31"
                       value={day}
                       onChange={(e) => setDay(e.target.value)}
-                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-3 text-center text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
+                      // padding py-3 diganti py-2 untuk HP
+                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg md:rounded-xl px-1 md:px-3 py-2 md:py-3 text-sm md:text-base text-center text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
                     />
                 </div>
 
                 {/* Bulan */}
                 <div className="flex flex-col text-left col-span-1">
-                    <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1">Bulan</label>
+                    <label className="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 mb-0.5 md:mb-1 ml-1">Bulan</label>
                     <select
                       value={month}
                       onChange={(e) => setMonth(e.target.value)}
-                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-2 py-3 text-center text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium appearance-none"
+                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg md:rounded-xl px-1 md:px-2 py-2 md:py-3 text-sm md:text-base text-center text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium appearance-none"
                     >
                       <option value="" disabled>Pilih</option>
                       {MONTHS.map((m, idx) => (
@@ -198,7 +201,7 @@ ${result.data.saran}
 
                 {/* Tahun */}
                 <div className="flex flex-col text-left">
-                    <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 ml-1">Tahun</label>
+                    <label className="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 mb-0.5 md:mb-1 ml-1">Tahun</label>
                     <input
                       type="number"
                       placeholder="Thn"
@@ -206,14 +209,15 @@ ${result.data.saran}
                       max="2100"
                       value={year}
                       onChange={(e) => setYear(e.target.value)}
-                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-3 text-center text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
+                      className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg md:rounded-xl px-1 md:px-3 py-2 md:py-3 text-sm md:text-base text-center text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
                     />
                 </div>
               </div>
 
               <button
                 onClick={handleCalculate}
-                className="w-full bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-primary-500/25 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
+                // Padding vertikal py-3.5 dikurangi jadi py-2.5 di HP
+                className="w-full bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-bold py-2.5 md:py-3.5 rounded-lg md:rounded-xl text-sm md:text-base shadow-lg shadow-primary-500/25 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <SparklesIcon />
                 Cek
