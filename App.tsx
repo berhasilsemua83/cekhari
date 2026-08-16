@@ -324,29 +324,53 @@ ${result.data.saran}
                 </div>
 
                 <div className="prose dark:prose-invert max-w-none">
-                  <h4 className="text-xl font-heading font-bold text-gray-900 dark:text-white mb-3">
+                  <h4 className="text-xl font-heading font-bold text-gray-900 dark:text-white mb-2">
                     Kepribadian {result.wetonLengkap}
                   </h4>
+                  
+                  {/* Badge Lakuning (Metafora Alam) */}
+                  <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium text-sm border border-indigo-100 dark:border-indigo-800">
+                    🌿 Metafora: {result.data.lakuning}
+                  </div>
+
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-justify mb-6">
                     {result.data.watak}
                   </p>
 
+                  {/* Section Karier */}
+                  <div className="mb-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-5 border border-gray-100 dark:border-gray-700/50">
+                    <h5 className="font-heading font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                      💼 Potensi Karier
+                    </h5>
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                      {result.data.karier}
+                    </p>
+                  </div>
+
+                  {/* Section Saran */}
                   {result.data.saran && (
                     <div className="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-5 border border-primary-100 dark:border-primary-800">
                       <h4 className="font-heading text-md font-semibold text-primary-700 dark:text-primary-300 mb-2 flex items-center gap-2">
                         💡 Saran & Nasihat
                       </h4>
-                      <p className="text-gray-700 dark:text-primary-300 text-sm leading-relaxed italic">
+                      <p className="text-primary-800 dark:text-primary-200 text-sm leading-relaxed italic">
                         "{result.data.saran}"
                       </p>
                     </div>
                   )}
                 </div>
                 
-                <div className="mt-8 text-center border-t border-gray-100 dark:border-gray-800 pt-6">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    *Analisa ini berdasarkan ilmu titen (tanda alam) warisan leluhur, bukan ramalan mutlak.
-                  </p>
+                {/* Warning / Disclaimer Box */}
+                <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-4 md:p-5 border border-amber-200 dark:border-amber-800/50">
+                  <div className="flex gap-3 items-start">
+                    <span className="text-amber-500 text-xl">⚠️</span>
+                    <div>
+                      <h4 className="text-sm md:text-base font-bold text-amber-800 dark:text-amber-400 mb-1.5">Catatan Penting</h4>
+                      <p className="text-xs md:text-sm text-amber-700 dark:text-amber-300/80 leading-relaxed text-justify">
+                        Hasil analisa weton ini merupakan bagian dari pelestarian budaya Jawa dan <b><i>Ilmu Titen</i></b> (ilmu membaca pola alam leluhur), bukan sebuah ramalan mutlak. Jadikan hasilnya sebagai bahan introspeksi diri dan motivasi untuk menjadi pribadi yang lebih baik. Kepastian masa depan dan takdir sepenuhnya tetap berada di tangan Tuhan Yang Maha Esa.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
