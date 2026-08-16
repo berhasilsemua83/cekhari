@@ -157,7 +157,7 @@ ${result.data.saran}
               Bongkar Rahasia di Balik <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">Tanggal Lahirmu!</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-xs md:text-lg leading-snug md:leading-relaxed">
-              Temukan watak asli, weton, neptu, hingga zodiakmu. Siap terkejut dengan hasilnya?
+              Temukan watak asli, weton, neptu, hingga zodiakmu. Siapkah Anda dengan hasilnya?
             </p>
           </div>
 
