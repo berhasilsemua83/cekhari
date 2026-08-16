@@ -92,7 +92,7 @@ export const wetonDatabase: Record<string, WetonData> = {
   },
   "Selasa Legi": {
     lakuning: "Lakuning Geni (Api)",
-    watak: "Selasa Legi (Neptu 8) ibarat 'Api'. Mereka bersemangat, memiliki bakat diplomasi luar biasa, dan bisa "membakar" motivasi orang lain. Mereka sangat peduli dengan komunitas atau lingkaran sosialnya. Tantangannya adalah, mereka sering cepat marah, emosinya meledak-ledak, dan ambisinya kadang tidak diiringi dengan eksekusi hingga tuntas.",
+    watak: "Selasa Legi (Neptu 8) ibarat 'Api'. Mereka bersemangat, memiliki bakat diplomasi luar biasa, dan bisa 'membakar' motivasi orang lain. Mereka sangat peduli dengan komunitas atau lingkaran sosialnya. Tantangannya adalah, mereka sering cepat marah, emosinya meledak-ledak, dan ambisinya kadang tidak diiringi dengan eksekusi hingga tuntas.",
     karier: "Bakat negosiasinya sangat pas untuk Pengusaha, Motivator, PR (Public Relations), atau Pekerja Sosial.",
     saran: "Kendalikan amarah agar tidak merusak hubungan yang sudah dibangun dengan susah payah. Prioritaskan satu tujuan hingga selesai."
   },
