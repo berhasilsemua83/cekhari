@@ -433,7 +433,7 @@ ${result.data.saran}
                           <div>
                             <h4 className="text-xs md:text-sm font-bold text-amber-800 dark:text-amber-400 mb-1 print:text-black">Catatan Penting</h4>
                             <p className="text-[10px] md:text-xs text-amber-700 dark:text-amber-300/80 leading-relaxed text-justify print:text-gray-600">
-                              Hasil analisa weton ini merupakan bagian dari pelestarian budaya Jawa dan <b><i>Ilmu Titen</i></b> (ilmu membaca pola alam leluhur), bukan sebuah ramalan mutlak. Jadikan hasilnya sebagai bahan introspeksi diri.
+                              Hasil analisa weton ini merupakan bagian dari pelestarian budaya Jawa dan <b><i>Ilmu Titen</i></b> (ilmu membaca pola alam leluhur), bukan sebuah ramalan mutlak. Jadikan hasilnya sebagai bahan introspeksi diri dan motivasi untuk menjadi pribadi yang lebih baik. Kepastian masa depan dan takdir sepenuhnya tetap berada di tangan Tuhan Yang Maha Esa.
                             </p>
                           </div>
                         </div>
