@@ -126,7 +126,7 @@ ${result.data.saran}
   return (
     <div className="min-h-screen flex flex-col font-sans selection:bg-primary-500 selection:text-white">
       {/* Header */}
-      <header className="w-full py-6 px-4 md:px-8 flex justify-between items-center bg-white/80 dark:bg-dark-bg/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
+      <header className="w-full py-3 md:py-6 px-4 md:px-8 flex justify-between items-center bg-white/80 dark:bg-dark-bg/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100 dark:border-gray-800">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white shadow-lg shadow-primary-500/30">
             <FingerPrintIcon />
@@ -145,25 +145,24 @@ ${result.data.saran}
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow container mx-auto px-4 py-4 md:py-12 max-w-4xl">
+      <main className="flex-grow container mx-auto px-4 py-3 md:py-12 max-w-4xl">
         
         {/* Hero / Input Section */}
-        <section className="text-center mb-8 md:mb-12 space-y-4 md:space-y-6 animate-fade-in-up">
-          <div className="space-y-3 md:space-y-4 px-2">
+        <section className="text-center mb-5 md:mb-12 space-y-3 md:space-y-6 animate-fade-in-up">
+          <div className="space-y-2 md:space-y-3 px-2">
             <span className="inline-block py-1 px-3 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-bold tracking-wider uppercase">
               Kenali Jati Dirimu 🔮
             </span>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 dark:text-white leading-tight">
-              Bongkar Rahasia di Balik <br className="block sm:hidden" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">Tanggal Lahirmu!</span>
+              Bongkar Rahasia di Balik <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">Tanggal Lahirmu!</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-sm md:text-lg leading-relaxed">
-              Temukan watak tersembunyi, weton Jawa, neptu, hingga zodiakmu. Siap terkejut dengan hasilnya?
+              Temukan watak tersembunyi, weton Jawa, neptu, hingga zodiakmu. Siapkah Anda dengan hasilnya?
             </p>
           </div>
 
           {/* New Input Form Section */}
-          <div className="relative group max-w-lg mx-auto mt-8">
+          <div className="relative group max-w-lg mx-auto mt-3 md:mt-8">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-400 to-primary-600 rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative bg-white dark:bg-dark-card rounded-2xl p-4 md:p-6 shadow-2xl ring-1 ring-gray-900/5">
               
