@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { calculateBirthDay } from './utils/wetonCalculator';
 import { BirthResult } from './types';
+import { openAffiliateLink } from './affiliateLinks'; // Sesuaikan path jika file ini ada di dalam folder /utils
 
 // --- Icons ---
 const MoonIcon = () => (
@@ -46,6 +47,7 @@ export default function App() {
   const [result, setResult] = useState<BirthResult | null>(null);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const [copied, setCopied] = useState(false);
+  const [showFullResult, setShowFullResult] = useState<boolean>(false);
 
   useEffect(() => {
     if (localStorage.getItem('theme') === 'light') {
@@ -73,35 +75,39 @@ export default function App() {
     }
   };
 
-const handleCalculate = () => {
-  if (!day || !month || !year) return;
+  const handleCalculate = () => {
+    if (!day || !month || !year) return;
 
-  const numDay = parseInt(day, 10);
-  const numMonth = parseInt(month, 10); // month sudah 0-11
-  const numYear = parseInt(year, 10);
+    const numDay = parseInt(day, 10);
+    const numMonth = parseInt(month, 10); 
+    const numYear = parseInt(year, 10);
 
-  // Menggunakan konstruktor ini jauh lebih aman dari masalah Timezone
-  const dateObj = new Date(numYear, numMonth, numDay);
-  
-  // Validasi ketat: pastikan tanggal, bulan, dan tahun tidak melompat (misal: 31 Februari)
-  const isValidDate = 
-    dateObj.getFullYear() === numYear && 
-    dateObj.getMonth() === numMonth && 
-    dateObj.getDate() === numDay;
+    const dateObj = new Date(numYear, numMonth, numDay);
+    
+    const isValidDate = 
+      dateObj.getFullYear() === numYear && 
+      dateObj.getMonth() === numMonth && 
+      dateObj.getDate() === numDay;
 
-  if (isValidDate) {
-      // Format kembali jadi YYYY-MM-DD jika wetonCalculator membutuhkan string
-      const paddedDay = numDay.toString().padStart(2, '0');
-      const paddedMonth = (numMonth + 1).toString().padStart(2, '0');
-      const dateString = `${numYear}-${paddedMonth}-${paddedDay}`;
+    if (isValidDate) {
+        const paddedDay = numDay.toString().padStart(2, '0');
+        const paddedMonth = (numMonth + 1).toString().padStart(2, '0');
+        const dateString = `${numYear}-${paddedMonth}-${paddedDay}`;
 
-      const calcResult = calculateBirthDay(dateString);
-      setResult(calcResult);
-      setCopied(false);
-  } else {
-      alert("Tanggal tidak valid. Silakan periksa kembali.");
-  }
-};
+        const calcResult = calculateBirthDay(dateString);
+        setResult(calcResult);
+        setCopied(false);
+        setShowFullResult(false); // <--- Kunci kembali saat klik Cek
+    } else {
+        alert("Tanggal tidak valid. Silakan periksa kembali.");
+    }
+  };
+
+  // --- FUNGSI BUKA KUNCI AFILIASI ---
+  const handleUnlockResults = () => {
+    openAffiliateLink(); // Membuka tab affiliasi
+    setShowFullResult(true); // Menampilkan seluruh hasil
+  };
 
   const handleCopy = () => {
     if (!result || !result.data) return;
@@ -164,12 +170,9 @@ ${result.data.saran}
           {/* New Input Form Section */}
           <div className="relative group max-w-lg mx-auto mt-3 md:mt-8">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-400 to-primary-600 rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-            {/* Padding kotak form dikurangi dari p-4 ke p-3 untuk HP */}
             <div className="relative bg-white dark:bg-dark-card rounded-2xl p-3 md:p-6 shadow-2xl ring-1 ring-gray-900/5">
               
-              {/* Gap diperkecil, margin bawah diperkecil */}
               <div className="grid grid-cols-3 gap-2 md:gap-4 mb-3 md:mb-4">
-                {/* Tanggal */}
                 <div className="flex flex-col text-left">
                     <label className="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 mb-0.5 md:mb-1 ml-1">Tgl</label>
                     <input
@@ -179,12 +182,10 @@ ${result.data.saran}
                       max="31"
                       value={day}
                       onChange={(e) => setDay(e.target.value)}
-                      // padding py-3 diganti py-2 untuk HP
                       className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg md:rounded-xl px-1 md:px-3 py-2 md:py-3 text-sm md:text-base text-center text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
                     />
                 </div>
 
-                {/* Bulan */}
                 <div className="flex flex-col text-left col-span-1">
                     <label className="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 mb-0.5 md:mb-1 ml-1">Bulan</label>
                     <select
@@ -199,7 +200,6 @@ ${result.data.saran}
                     </select>
                 </div>
 
-                {/* Tahun */}
                 <div className="flex flex-col text-left">
                     <label className="text-[10px] md:text-xs font-semibold text-gray-500 dark:text-gray-400 mb-0.5 md:mb-1 ml-1">Tahun</label>
                     <input
@@ -216,7 +216,6 @@ ${result.data.saran}
 
               <button
                 onClick={handleCalculate}
-                // Padding vertikal py-3.5 dikurangi jadi py-2.5 di HP
                 className="w-full bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-bold py-2.5 md:py-3.5 rounded-lg md:rounded-xl text-sm md:text-base shadow-lg shadow-primary-500/25 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <SparklesIcon />
@@ -231,8 +230,9 @@ ${result.data.saran}
         {result && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in-up delay-75">
             
-            {/* Card 1: Main Birth Summary */}
-            <div className="bg-white dark:bg-dark-card rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+            {/* Card 1: Main Birth Summary (SELALU TAMPIL) */}
+            {/* Jika belum di-unlock, posisinya di tengah (col-span-2) */}
+            <div className={`bg-white dark:bg-dark-card rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50 relative overflow-hidden group hover:shadow-2xl transition-all duration-500 ${showFullResult ? "md:col-span-1" : "md:col-span-2 max-w-lg mx-auto w-full"}`}>
               <div className="absolute top-0 right-0 w-40 h-40 bg-primary-500/10 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110 duration-500"></div>
               
               <div className="flex items-center gap-2 mb-6">
@@ -270,122 +270,138 @@ ${result.data.saran}
               </div>
             </div>
 
-            {/* Card 2: Age Calculator (Modern) */}
-            <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-3xl p-6 md:p-8 shadow-xl text-white relative overflow-hidden">
-               <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-16 -mb-16"></div>
-               
-               <div className="relative z-10 h-full flex flex-col justify-between">
-                 <div>
-                    <h3 className="text-primary-100 font-medium mb-1">Usia Kamu Saat Ini</h3>
-                    <p className="text-3xl font-heading font-bold mb-6">Perjalanan Waktu</p>
-                 </div>
-
-                 <div className="grid grid-cols-3 gap-2 text-center">
-                    <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
-                      <span className="block text-xl md:text-2xl font-bold">{result.age.years}</span>
-                      <span className="text-xs text-primary-100 uppercase tracking-wider">Tahun</span>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
-                      <span className="block text-xl md:text-2xl font-bold">{result.age.months}</span>
-                      <span className="text-xs text-primary-100 uppercase tracking-wider">Bulan</span>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
-                      <span className="block text-xl md:text-2xl font-bold">{result.age.days}</span>
-                      <span className="text-xs text-primary-100 uppercase tracking-wider">Hari</span>
-                    </div>
-                 </div>
-               </div>
-            </div>
-
-            {/* Card 3: Analysis (Traditional Weton Data) */}
-            {result.data && (
-              <div className="md:col-span-2 bg-white dark:bg-dark-card rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="flex items-center gap-2">
-                    <span className="p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-primary-600 dark:text-primary-400">
-                      <SparklesIcon />
-                    </span>
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                      Watak & Karakter (Ilmu Titen)
-                    </h3>
-                  </div>
-                  <button 
-                    onClick={handleCopy}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  >
-                    {copied ? (
-                      <span className="text-green-500">Tersalin!</span>
-                    ) : (
-                      <>
-                        <CopyIcon /> Salin Hasil
-                      </>
-                    )}
-                  </button>
-                </div>
-
-                <div className="prose dark:prose-invert max-w-none">
-                  <h4 className="text-xl font-heading font-bold text-gray-900 dark:text-white mb-2">
-                    Kepribadian {result.wetonLengkap}
-                  </h4>
-                  
-                  {/* Badge Lakuning (Metafora Alam) */}
-                  <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium text-sm border border-indigo-100 dark:border-indigo-800">
-                    🌿 Metafora: {result.data.lakuning}
-                  </div>
-
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-justify mb-6">
-                    {result.data.watak}
-                  </p>
-
-                  {/* Section Karier */}
-                  <div className="mb-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-5 border border-gray-100 dark:border-gray-700/50">
-                    <h5 className="font-heading font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                      💼 Potensi Karier
-                    </h5>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                      {result.data.karier}
-                    </p>
-                  </div>
-
-                  {/* Section Saran (Diperbaiki Warna & Desainnya) */}
-                  {result.data.saran && (
-                    <div className="relative bg-primary-50 dark:bg-dark-bg rounded-2xl p-5 md:p-6 border border-primary-100 dark:border-gray-700/60 overflow-hidden shadow-inner">
-                      {/* Watermark Quote Icon di Background */}
-                      <span className="absolute -top-4 -right-2 text-8xl font-serif text-primary-500 opacity-10 dark:opacity-20 pointer-events-none">
-                        "
-                      </span>
-                      
-                      <h4 className="relative z-10 font-heading text-md font-semibold text-primary-700 dark:text-primary-400 mb-3 flex items-center gap-2">
-                        💡 Pesan Untukmu
-                      </h4>
-                      
-                      <p className="relative z-10 text-gray-800 dark:text-gray-200 text-sm md:text-base leading-relaxed italic font-medium">
-                        "{result.data.saran}"
-                      </p>
-                    </div>
-                  )}
-                </div>
-                
-                {/* Warning / Disclaimer Box */}
-                <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-4 md:p-5 border border-amber-200 dark:border-amber-800/50">
-                  <div className="flex gap-3 items-start">
-                    <span className="text-amber-500 text-xl">⚠️</span>
-                    <div>
-                      <h4 className="text-sm md:text-base font-bold text-amber-800 dark:text-amber-400 mb-1.5">Catatan Penting</h4>
-                      <p className="text-xs md:text-sm text-amber-700 dark:text-amber-300/80 leading-relaxed text-justify">
-                        Hasil analisa weton ini merupakan bagian dari pelestarian budaya Jawa dan <b><i>Ilmu Titen</i></b> (ilmu membaca pola alam leluhur), bukan sebuah ramalan mutlak. Jadikan hasilnya sebagai bahan introspeksi diri dan motivasi untuk menjadi pribadi yang lebih baik. Kepastian masa depan dan takdir sepenuhnya tetap berada di tangan Tuhan Yang Maha Esa.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            {/* AREA TOMBOL GEMBOK (Tampil saat showFullResult = false) */}
+            {!showFullResult && (
+              <div className="md:col-span-2 flex flex-col items-center justify-center space-y-4 py-6 md:py-8 animate-fade-in-up delay-150">
+                <button
+                  onClick={handleUnlockResults}
+                  className="relative overflow-hidden group bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold py-3.5 px-8 md:px-12 rounded-full shadow-xl shadow-orange-500/30 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 text-lg border border-orange-400/50"
+                >
+                  <span className="absolute inset-0 w-full h-full bg-white/20 group-hover:animate-[shimmer_1.5s_infinite] -skew-x-12 -ml-10"></span>
+                  🔒 Bongkar Hasil Lengkap
+                </button>
+                <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 text-center max-w-md px-4">
+                  <b>Info:</b> Untuk mendukung layanan ini, sistem akan membuka halaman sponsor di tab baru. Anda dapat menutup tab tersebut untuk melihat hasil tes Anda di sini.
+                </p>
               </div>
             )}
 
+            {/* HASIL LENGKAP LAINNYA (Tampil saat showFullResult = true) */}
+            {showFullResult && (
+              <>
+                {/* Card 2: Age Calculator */}
+                <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-3xl p-6 md:p-8 shadow-xl text-white relative overflow-hidden animate-fade-in-up">
+                   <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-16 -mb-16"></div>
+                   
+                   <div className="relative z-10 h-full flex flex-col justify-between">
+                     <div>
+                        <h3 className="text-primary-100 font-medium mb-1">Usia Kamu Saat Ini</h3>
+                        <p className="text-3xl font-heading font-bold mb-6">Perjalanan Waktu</p>
+                     </div>
+
+                     <div className="grid grid-cols-3 gap-2 text-center">
+                        <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
+                          <span className="block text-xl md:text-2xl font-bold">{result.age.years}</span>
+                          <span className="text-xs text-primary-100 uppercase tracking-wider">Tahun</span>
+                        </div>
+                        <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
+                          <span className="block text-xl md:text-2xl font-bold">{result.age.months}</span>
+                          <span className="text-xs text-primary-100 uppercase tracking-wider">Bulan</span>
+                        </div>
+                        <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3">
+                          <span className="block text-xl md:text-2xl font-bold">{result.age.days}</span>
+                          <span className="text-xs text-primary-100 uppercase tracking-wider">Hari</span>
+                        </div>
+                     </div>
+                   </div>
+                </div>
+
+                {/* Card 3: Analysis */}
+                {result.data && (
+                  <div className="md:col-span-2 bg-white dark:bg-dark-card rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700/50 animate-fade-in-up delay-75">
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="flex items-center gap-2">
+                        <span className="p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-primary-600 dark:text-primary-400">
+                          <SparklesIcon />
+                        </span>
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                          Watak & Karakter (Ilmu Titen)
+                        </h3>
+                      </div>
+                      <button 
+                        onClick={handleCopy}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        {copied ? (
+                          <span className="text-green-500">Tersalin!</span>
+                        ) : (
+                          <>
+                            <CopyIcon /> Salin Hasil
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    <div className="prose dark:prose-invert max-w-none">
+                      <h4 className="text-xl font-heading font-bold text-gray-900 dark:text-white mb-2">
+                        Kepribadian {result.wetonLengkap}
+                      </h4>
+                      
+                      {/* Badge Lakuning */}
+                      <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium text-sm border border-indigo-100 dark:border-indigo-800">
+                        🌿 Metafora: {result.data.lakuning}
+                      </div>
+
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-justify mb-6">
+                        {result.data.watak}
+                      </p>
+
+                      {/* Section Karier */}
+                      <div className="mb-6 bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-5 border border-gray-100 dark:border-gray-700/50">
+                        <h5 className="font-heading font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                          💼 Potensi Karier
+                        </h5>
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                          {result.data.karier}
+                        </p>
+                      </div>
+
+                      {/* Section Saran */}
+                      {result.data.saran && (
+                        <div className="relative bg-primary-50 dark:bg-dark-bg rounded-2xl p-5 md:p-6 border border-primary-100 dark:border-gray-700/60 overflow-hidden shadow-inner">
+                          <span className="absolute -top-4 -right-2 text-8xl font-serif text-primary-500 opacity-10 dark:opacity-20 pointer-events-none">
+                            "
+                          </span>
+                          <h4 className="relative z-10 font-heading text-md font-semibold text-primary-700 dark:text-primary-400 mb-3 flex items-center gap-2">
+                            💡 Pesan Untukmu
+                          </h4>
+                          <p className="relative z-10 text-gray-800 dark:text-gray-200 text-sm md:text-base leading-relaxed italic font-medium">
+                            "{result.data.saran}"
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Disclaimer Box */}
+                    <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-4 md:p-5 border border-amber-200 dark:border-amber-800/50">
+                      <div className="flex gap-3 items-start">
+                        <span className="text-amber-500 text-xl">⚠️</span>
+                        <div>
+                          <h4 className="text-sm md:text-base font-bold text-amber-800 dark:text-amber-400 mb-1.5">Catatan Penting</h4>
+                          <p className="text-xs md:text-sm text-amber-700 dark:text-amber-300/80 leading-relaxed text-justify">
+                            Hasil analisa weton ini merupakan bagian dari pelestarian budaya Jawa dan <b><i>Ilmu Titen</i></b> (ilmu membaca pola alam leluhur), bukan sebuah ramalan mutlak. Jadikan hasilnya sebagai bahan introspeksi diri dan motivasi untuk menjadi pribadi yang lebih baik. Kepastian masa depan dan takdir sepenuhnya tetap berada di tangan Tuhan Yang Maha Esa.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                )}
+              </>
+            )}
           </div>
         )}
       </main>
-
-      {/* Footer Removed */}
     </div>
   );
 }
